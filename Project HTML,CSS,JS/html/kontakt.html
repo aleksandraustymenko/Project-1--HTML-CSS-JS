@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link  rel="stylesheet" href="../css/style.css">
+	
+    <title>Kontakt</title>
+</head>
+
+<body>
+<main>
+
+	<iframe src="../html/menu.html"  class="menu"></iframe>
+
+   
+            <h1>Formularz kontaktowy</h1>
+            <form action="https://webdevbasics.net/scripts/demo.php" method="POST" id="kontakt_form">
+			
+			<label for="name">Imię i nazwisko:</label>
+			<input type="text" id="name" name="name"  title="Imię i nazwisko mogą zawierać tylko litery i spacje.">
+			<br><br>
+			
+			<label for="age">Wiek:</label>
+			<input type="number" id="age" name="age"  required>
+			<br><br>
+			
+			<label for="email">Adres e-mail:</label>
+			<input type="email" id="email" name="email" required>
+			<br><br>
+			
+			<label>Preferencje kontaktu:</label><br>
+			<input type="radio" id="preference1" name="preference" value="A" required>
+			<label for="preference1">Telefon</label><br>
+			<input type="radio" id="preference2" name="preference" value="B">
+			<label for="preference2">Email</label><br>
+			<input type="radio" id="preference3" name="preference" value="C">
+			<label for="preference3">Siedziba firmy</label>
+			<br><br>
+
+		
+			
+			<label for="country">Wybierz język :</label>
+			<select id="country" name="country" required>
+				<option value="">Wybierz...</option>
+				<option value="PL">Polski</option>
+				<option value="ENG">Angielski</option>
+				<option value="ESP">Hiszpański</option>
+			</select>
+			<br><br>
+
+			
+			<label for="start_date">Termin rozpoczęcia:</label>
+			<input type="date" id="start_date" name="start_date" >
+			<br><br>
+			
+			<label for="end_date">Termin zakończenia:</label>
+			<input type="date" id="end_date" name="end_date" >
+			<br><br>
+				
+			
+			<label for="message">Treść wiadomości</label><br>
+			<textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+			<br><br>
+			
+			<label for="subscribe">Czy pozwalasz na obrobienie danych osobowych:</label>
+			<input type="checkbox" id="subscribe" name="subscribe" required>
+			<br><br>
+			
+			<input type="submit" style="color: white">
+			<input type="reset"  style="color: white">
+		    </form>
+			
+			<script>
+				    document.getElementById('kontakt_form').addEventListener('submit', (event) => {
+					event.preventDefault(); 
+					
+					
+					const name = document.getElementById('name').value;
+					const age = document.getElementById('age').value;
+					const email = document.getElementById('email').value;
+					const preference = document.querySelector('input[name="preference"]:checked');
+					const country = document.getElementById('country').value;
+					const subscribe = document.getElementById('subscribe').checked;
+					
+					
+					if (!name || !/^[A-Za-z\s]+$/.test(name)) {
+						alert('Proszę podać poprawne imię i nazwisko zawierające litery ');
+						return;
+					}
+
+					if (!age || age < 18 || age > 100) {
+						alert('Proszę podać  wiek w przydziałe od 18 do 100');
+						return;
+					}
+
+					if (!email || !/\S+@\S+\.\S+/.test(email)) {
+						alert('Proszę podać  adres e-mail zgodnie ze standardem ');
+						return;
+					}
+
+					if (!preference) {
+						alert('Proszę wybrać preferencję kontaktu');
+						return;
+					}
+
+					if (!country) {
+						alert('Proszę wybrać język');
+						return;
+					}
+
+					if (!subscribe) {
+						alert('Proszę wyrazić zgodę na przetwarzanie danych osobowych');
+						return;
+					}
+
+					
+					alert('Formularz został przesłany!');
+					
+					
+					setTimeout(() => {
+						document.getElementById('kontakt_form').submit();
+					}, 2000);
+				});
+			</script>
+
+
+<iframe src="../html/stopka.html" class="footer"></iframe>
+
+</main>
+</body>
+    
+
+
+
+</html>
+
+
